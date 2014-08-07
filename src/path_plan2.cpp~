@@ -1,0 +1,186 @@
+// -*- C++ -*-
+/*!
+ * @file  path_plan2.cpp
+ * @brief ModuleDescription
+ * @date $Date$
+ *
+ * $Id$
+ */
+
+#include "path_plan2.h"
+#include "iostream"
+
+#define DEBUG_
+#define DEBUG_MAP  // show map
+#define DEBUG_CMAP // make cleaned map manually
+#define DEBUG_OMAP // make occupied map manually
+
+using namespace std;
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* path_plan2_spec[] =
+  {
+    "implementation_id", "path_plan2",
+    "type_name",         "path_plan2",
+    "description",       "ModuleDescription",
+    "version",           "1.0.0",
+    "vendor",            "VenderName",
+    "category",          "Category",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    // Configuration variables
+    "conf.default.velocityCoeff", "1.0",
+    "conf.default.angularVelocityCoeff", "1.0",
+    // Widget
+    "conf.__widget__.velocityCoeff", "text",
+    "conf.__widget__.angularVelocityCoeff", "text",
+    // Constraints
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+path_plan2::path_plan2(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager),
+    m_robotPoseIn("robotPose", m_robotPose),
+    m_obstacleDataIn("obstacleData", m_obstacleData),
+    m_wayPointOut("wayPoint", m_wayPoint)
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+path_plan2::~path_plan2()
+{
+}
+
+
+
+RTC::ReturnCode_t path_plan2::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  addInPort("robotPose", m_robotPoseIn);
+  addInPort("obstacleData", m_obstacleDataIn);
+  
+  // Set OutPort buffer
+  addOutPort("wayPoint", m_wayPointOut);
+  
+  // Set service provider to Ports
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // Bind variables and configuration variable
+  bindParameter("velocityCoeff", m_velocityCoeff, "1.0");
+  bindParameter("angularVelocityCoeff", m_angularVelocityCoeff, "1.0");
+  
+  // </rtc-template>
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t path_plan2::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t path_plan2::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t path_plan2::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+RTC::ReturnCode_t path_plan2::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t path_plan2::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t path_plan2::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+RTC::ReturnCode_t path_plan2::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t path_plan2::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t path_plan2::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t path_plan2::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+
+extern "C"
+{
+ 
+  void path_plan2Init(RTC::Manager* manager)
+  {
+    coil::Properties profile(path_plan2_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<path_plan2>,
+                             RTC::Delete<path_plan2>);
+  }
+  
+};
+
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC    -shared -Wl,-soname,libpath_plan2.so -o libpath_plan2.so CMakeFiles/path_plan2.dir/path_plan2.cpp.o -lRTC -lcoil -luuid -ldl -lpthread -lomniORB4 -lomnithread -lomniDynamic4 
