@@ -33,9 +33,9 @@ using namespace RTC;
 
 #define MAPGRIDNUMX 10
 #define MAPGRIDNUMY 10
-#define MAPDIV 0.3
-#define XORG 0// origin of robot coordinate grid in real
-#define YORG 0// origin of robot coordinate grid in real
+#define MAPDIV 0.05
+#define XORG -0.25// origin of robot coordinate grid in real
+#define YORG -0.25// origin of robot coordinate grid in real
 /*!
  * @class path_plan2
  * @brief ModuleDescription

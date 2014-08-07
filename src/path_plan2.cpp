@@ -10,7 +10,7 @@
 #include "path_plan2.h"
 #include "iostream"
 
-#define DEBUG_
+//#define DEBUG_
 #define DEBUG_MAP  // show map
 #define DEBUG_CMAP // make cleaned map manually
 //#define DEBUG_OMAP // make occupied map manually
@@ -128,14 +128,14 @@ RTC::ReturnCode_t path_plan2::onActivated(RTC::UniqueId ec_id)
   }
   robotLocation[0] = 0;
   robotLocation[1] = 0;
-  robotLocationGrid[0] = 0;
-  robotLocationGrid[1] = 0;
+  robotLocationGrid[0] = 5;
+  robotLocationGrid[1] = 5;
   robotHeading = 0;
   robotHeadingGrid = 1;
   nextWayPoint[0] = 0;
   nextWayPoint[1] = 0;
-  nextWayPointGrid[0] = 0;
-  nextWayPointGrid[1] = 0;
+  nextWayPointGrid[0] = 5;
+  nextWayPointGrid[1] = 5;
   
   cout << "activated " << endl;
   return RTC::RTC_OK;
@@ -317,7 +317,6 @@ RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
     //cout << "grid:" << robotLocationGrid[0] << ", " << robotLocationGrid[1] << endl; // display current grids
 #endif
 
-
   if(robotLocationGrid[0] == nextWayPointGrid[0] && robotLocationGrid[1] == nextWayPointGrid[1]){ // if robot entered the next way point grid
 #ifdef DEBUG_OMAP
     //make occupied map by hand
@@ -334,7 +333,9 @@ RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
     occupiedMap[4][5]=1;
     occupiedMap[4][6]=1;
 #endif
- 
+
+    cout << "grid:" << robotLocationGrid[0]<< ", " << robotLocationGrid[1] << endl; 
+
     makeStepsMap(robotLocationGrid, occupiedMap, stepsMapFromRobot);// make steps map from robot
 
     // determine next goal from steps map from robot & cleaned map
