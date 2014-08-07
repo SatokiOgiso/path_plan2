@@ -22,3 +22,5 @@
 
 *Comp
 *.log
+
+build/*

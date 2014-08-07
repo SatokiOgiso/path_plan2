@@ -251,12 +251,15 @@ inline int path_plan2::determineNextWayPoint(int nextWayPoint[2], int stepsMap[M
 inline int path_plan2::realToGrid(int locationGrid[2], double location[2])
 {
   int gridValid = 1;
-
+  int locationGridOld[2] = {locationGrid[0], locationGrid[1]};
+    
   locationGrid[0] = (int)((location[0] - XORG)/MAPDIV); // calculate grid number for x
   locationGrid[1] = (int)((location[1] - YORG)/MAPDIV); // calculate grid number for y 
 
   if((MAPGRIDNUMX <= locationGrid[0]) || (MAPGRIDNUMY <= locationGrid[1]) || (0 > locationGrid[0]) || (0 > locationGrid[1])){
     gridValid = 0; // the calculated grid is out of map
+    locationGrid[0] = locationGridOld[0];
+    locationGrid[1] = locationGridOld[1];
   }
 
   return gridValid;
