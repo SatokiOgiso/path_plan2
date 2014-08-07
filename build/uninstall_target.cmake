@@ -1,8 +1,8 @@
-if(NOT EXISTS "/home/satoki/workspace/path_plan2/build/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: \"/home/satoki/workspace/path_plan2/build/install_manifest.txt\"")
-endif(NOT EXISTS "/home/satoki/workspace/path_plan2/build/install_manifest.txt")
+if(NOT EXISTS "/home/ohnishilab/workspace/ogiso/path_plan2/build/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: \"/home/ohnishilab/workspace/ogiso/path_plan2/build/install_manifest.txt\"")
+endif(NOT EXISTS "/home/ohnishilab/workspace/ogiso/path_plan2/build/install_manifest.txt")
 
-file(READ "/home/satoki/workspace/path_plan2/build/install_manifest.txt" files)
+file(READ "/home/ohnishilab/workspace/ogiso/path_plan2/build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
     message(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")

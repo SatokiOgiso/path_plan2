@@ -1,4 +1,4 @@
-# Install script for directory: /home/satoki/workspace/path_plan2/cmake
+# Install script for directory: /home/ohnishilab/workspace/ogiso/path_plan2/cmake
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,13 +33,13 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "component")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/pkgconfig" TYPE FILE FILES "/home/satoki/workspace/path_plan2/build/cmake/path_plan2.pc")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/pkgconfig" TYPE FILE FILES "/home/ohnishilab/workspace/ogiso/path_plan2/build/cmake/path_plan2.pc")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "component")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "library")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/share/path_plan2-1" TYPE FILE FILES
-    "/home/satoki/workspace/path_plan2/build/cmake/path_plan2-config.cmake"
-    "/home/satoki/workspace/path_plan2/build/cmake/path_plan2-config-version.cmake"
+    "/home/ohnishilab/workspace/ogiso/path_plan2/build/cmake/path_plan2-config.cmake"
+    "/home/ohnishilab/workspace/ogiso/path_plan2/build/cmake/path_plan2-config-version.cmake"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "library")
 

@@ -1,1 +1,1 @@
-/usr/bin/c++       CMakeFiles/path_plan2comp.dir/path_plan2Comp.cpp.o  -o path_plan2comp -rdynamic libpath_plan2.so -lRTC -lcoil -luuid -ldl -lpthread -lomniORB4 -lomnithread -lomniDynamic4 -Wl,-rpath,/home/satoki/workspace/path_plan2/build/src: 
+/usr/bin/c++       CMakeFiles/path_plan2comp.dir/path_plan2Comp.cpp.o  -o path_plan2comp -rdynamic libpath_plan2.so -lRTC -lcoil -luuid -ldl -lpthread -lomniORB4 -lomnithread -lomniDynamic4 -Wl,-rpath,/home/ohnishilab/workspace/ogiso/path_plan2/build/src: 

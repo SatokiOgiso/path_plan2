@@ -6,7 +6,7 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "ModuleDescription")
 set(CPACK_PACKAGE_VENDOR "VenderName")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "path_plan2100")
 set(CPACK_PACKAGE_FILE_NAME "path_plan2-1.0.0")
-set(CPACK_RESOURCE_FILE_LICENSE "/home/satoki/workspace/path_plan2/COPYING.LESSER")
+set(CPACK_RESOURCE_FILE_LICENSE "/home/ohnishilab/workspace/ogiso/path_plan2/COPYING.LESSER")
 
 set(CPACK_COMPONENTS_ALL component)
 set(CPACK_COMPONENT_COMPONENT_DISPLAY_NAME "Applications")
@@ -53,13 +53,13 @@ IF (WIN32)
 
     # Windows WiX package settings
 
-    set(CPACK_WIX_XSL "/home/satoki/workspace/path_plan2/build/wix.xsl")
+    set(CPACK_WIX_XSL "/home/ohnishilab/workspace/ogiso/path_plan2/build/wix.xsl")
     set(CPACK_WIX_LANG "ja-jp")
     set(CPACK_RESOURCE_FILE_LICENSE
-        "/home/satoki/workspace/path_plan2/cmake/License.rtf")
+        "/home/ohnishilab/workspace/ogiso/path_plan2/cmake/License.rtf")
     configure_file(
-        "/home/satoki/workspace/path_plan2/cmake/wix.xsl.in"
-        "/home/satoki/workspace/path_plan2/build/wix.xsl" @ONLY)
+        "/home/ohnishilab/workspace/ogiso/path_plan2/cmake/wix.xsl.in"
+        "/home/ohnishilab/workspace/ogiso/path_plan2/build/wix.xsl" @ONLY)
 
     set(CPACK_PACKAGE_FILE_NAME
         "path_plan2100")
@@ -68,9 +68,9 @@ IF (WIN32)
     #
     #
     #
-    set(CPACK_NSIS_MUI_ICON "/home/satoki/workspace/path_plan2/cmake\\rt_middleware_logo.ico")
-    set(CPACK_NSIS_MUI_UNIICON "/home/satoki/workspace/path_plan2/cmake\\rt_middleware_logo.ico")
-    set(CPACK_PACKAGE_ICON "/home/satoki/workspace/path_plan2/cmake\\rt_middleware_logo.bmp")
+    set(CPACK_NSIS_MUI_ICON "/home/ohnishilab/workspace/ogiso/path_plan2/cmake\\rt_middleware_logo.ico")
+    set(CPACK_NSIS_MUI_UNIICON "/home/ohnishilab/workspace/ogiso/path_plan2/cmake\\rt_middleware_logo.ico")
+    set(CPACK_PACKAGE_ICON "/home/ohnishilab/workspace/ogiso/path_plan2/cmake\\rt_middleware_logo.bmp")
     set(CPACK_NSIS_HELP_LINK "http://www.openrtm.org")
     set(CPACK_NSIS_URL_INFO_ABOUT "http://www.openrtm.org")
     set(CPACK_NSIS_MODIFY_PATH ON)

@@ -24,7 +24,7 @@ rtm/idl/ExtendedDataTypesSkel.h
 rtm/idl/InterfaceDataTypesSkel.h
 -
 
-/home/satoki/workspace/path_plan2/src/path_plan2Comp.cpp
+/home/ohnishilab/workspace/ogiso/path_plan2/src/path_plan2Comp.cpp
 rtm/Manager.h
 -
 iostream
@@ -34,7 +34,7 @@ string
 stdlib.h
 -
 path_plan2.h
-/home/satoki/workspace/path_plan2/src/path_plan2.h
+/home/ohnishilab/workspace/ogiso/path_plan2/src/path_plan2.h
 
 /usr/include/coil-1.1/coil/Condition.h
 pthread.h

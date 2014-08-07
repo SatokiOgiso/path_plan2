@@ -1,4 +1,4 @@
-# Install script for directory: /home/satoki/workspace/path_plan2/src
+# Install script for directory: /home/ohnishilab/workspace/ogiso/path_plan2/src
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "compone
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/libpath_plan2.so"
          RPATH "")
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib" TYPE SHARED_LIBRARY FILES "/home/satoki/workspace/path_plan2/build/src/libpath_plan2.so")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib" TYPE SHARED_LIBRARY FILES "/home/ohnishilab/workspace/ogiso/path_plan2/build/src/libpath_plan2.so")
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/libpath_plan2.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/libpath_plan2.so")
     IF(CMAKE_INSTALL_DO_STRIP)
@@ -55,7 +55,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "compone
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/bin/path_plan2comp"
          RPATH "")
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/bin" TYPE EXECUTABLE FILES "/home/satoki/workspace/path_plan2/build/src/path_plan2comp")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/bin" TYPE EXECUTABLE FILES "/home/ohnishilab/workspace/ogiso/path_plan2/build/src/path_plan2comp")
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/bin/path_plan2comp" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/bin/path_plan2comp")
     FILE(RPATH_REMOVE
@@ -70,7 +70,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2/path_plan2Depends.cmake")
     FILE(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2/path_plan2Depends.cmake"
-         "/home/satoki/workspace/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends.cmake")
+         "/home/ohnishilab/workspace/ogiso/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends.cmake")
     IF(EXPORT_FILE_CHANGED)
       FILE(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2/path_plan2Depends-*.cmake")
       IF(OLD_CONFIG_FILES)
@@ -79,9 +79,9 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
       ENDIF(OLD_CONFIG_FILES)
     ENDIF(EXPORT_FILE_CHANGED)
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2" TYPE FILE FILES "/home/satoki/workspace/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends.cmake")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2" TYPE FILE FILES "/home/ohnishilab/workspace/ogiso/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends.cmake")
   IF("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
-    FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2" TYPE FILE FILES "/home/satoki/workspace/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends-noconfig.cmake")
+    FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/lib/path_plan2" TYPE FILE FILES "/home/ohnishilab/workspace/ogiso/path_plan2/build/src/CMakeFiles/Export/components/lib/path_plan2/path_plan2Depends-noconfig.cmake")
   ENDIF("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

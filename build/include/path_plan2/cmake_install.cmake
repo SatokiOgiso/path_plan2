@@ -1,4 +1,4 @@
-# Install script for directory: /home/satoki/workspace/path_plan2/include/path_plan2
+# Install script for directory: /home/ohnishilab/workspace/ogiso/path_plan2/include/path_plan2
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,6 +33,6 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "library")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/include/path_plan2-1/path_plan2" TYPE FILE FILES "/home/satoki/workspace/path_plan2/include/path_plan2/path_plan2.h")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/components/include/path_plan2-1/path_plan2" TYPE FILE FILES "/home/ohnishilab/workspace/ogiso/path_plan2/include/path_plan2/path_plan2.h")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "library")
 

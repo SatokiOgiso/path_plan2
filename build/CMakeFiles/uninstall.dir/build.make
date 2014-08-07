@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/satoki/workspace/path_plan2
+CMAKE_SOURCE_DIR = /home/ohnishilab/workspace/ogiso/path_plan2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/satoki/workspace/path_plan2/build
+CMAKE_BINARY_DIR = /home/ohnishilab/workspace/ogiso/path_plan2/build
 
 # Utility rule file for uninstall.
 
@@ -43,7 +43,7 @@ CMAKE_BINARY_DIR = /home/satoki/workspace/path_plan2/build
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/bin/cmake -P /home/satoki/workspace/path_plan2/build/uninstall_target.cmake
+	/usr/bin/cmake -P /home/ohnishilab/workspace/ogiso/path_plan2/build/uninstall_target.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -58,6 +58,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/satoki/workspace/path_plan2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/satoki/workspace/path_plan2 /home/satoki/workspace/path_plan2 /home/satoki/workspace/path_plan2/build /home/satoki/workspace/path_plan2/build /home/satoki/workspace/path_plan2/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ohnishilab/workspace/ogiso/path_plan2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ohnishilab/workspace/ogiso/path_plan2 /home/ohnishilab/workspace/ogiso/path_plan2 /home/ohnishilab/workspace/ogiso/path_plan2/build /home/ohnishilab/workspace/ogiso/path_plan2/build /home/ohnishilab/workspace/ogiso/path_plan2/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

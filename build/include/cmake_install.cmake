@@ -1,4 +1,4 @@
-# Install script for directory: /home/satoki/workspace/path_plan2/include
+# Install script for directory: /home/ohnishilab/workspace/ogiso/path_plan2/include
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/home/satoki/workspace/path_plan2/build/include/path_plan2/cmake_install.cmake")
+  INCLUDE("/home/ohnishilab/workspace/ogiso/path_plan2/build/include/path_plan2/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

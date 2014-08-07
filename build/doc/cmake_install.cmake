@@ -1,4 +1,4 @@
-# Install script for directory: /home/satoki/workspace/path_plan2/doc
+# Install script for directory: /home/ohnishilab/workspace/ogiso/path_plan2/doc
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
