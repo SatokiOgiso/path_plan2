@@ -67,7 +67,7 @@ class path_plan2
   inline void displayStepsMap(int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY]);
   inline int determineNextGoal(int nextGoal[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY], int cleanedMap[MAPGRIDNUMX][MAPGRIDNUMY]);
   inline int determineNextWayPoint(int nextWayPoint[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY]);
-  inline int realToGrid(double offset[2], int locationGrid[2], double location[2], int mapGridNumX, int mapGridNumY, double mapDivision);
+  inline int realToGrid(double offset[2], int locationGrid[2], double location[2]);
   /***
    *
    * The initialize action (on CREATED->ALIVE transition)

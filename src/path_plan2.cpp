@@ -276,7 +276,7 @@ RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
     m_robotPoseIn.read();    // read the pose data
     robotLocation[0] = m_robotPose.data.position.x; // store current robot x location 
     robotLocation[1] = m_robotPose.data.position.y; // store current robot y location
-    robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation, MAPGRIDNUMX, MAPGRIDNUMY, MAPDIV); 
+    robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation); 
     cleanedMap[robotLocationGrid[0]][robotLocationGrid[1]] = 1; // set cleaned on cleaned map
     cout << "grid:" << robotLocationGrid[0]<< ", " << robotLocationGrid[1] << endl; // display current grids
   }
@@ -284,7 +284,7 @@ RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
 #ifdef DEBUG_
   robotLocation[0] = 0.3; // store current robot x location 
   robotLocation[1] = 1.2; // store current robot y location
-  robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation, MAPGRIDNUMX, MAPGRIDNUMY, MAPDIV);
+  robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation);
   cleanedMap[robotLocationGrid[0]][robotLocationGrid[1]] = 1; // set cleaned on cleaned map
   cout << "grid:" << robotLocationGrid[0] << ", " << robotLocationGrid[1] << endl; // display current grids
 #endif
