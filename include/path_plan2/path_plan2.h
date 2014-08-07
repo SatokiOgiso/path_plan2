@@ -34,8 +34,8 @@ using namespace RTC;
 #define MAPGRIDNUMX 10
 #define MAPGRIDNUMY 10
 #define MAPDIV 0.3
-#define XORG -1.5// origin of robot coordinate grid in real
-#define YORG -1.5// origin of robot coordinate grid in real
+#define XORG 0// origin of robot coordinate grid in real
+#define YORG 0// origin of robot coordinate grid in real
 /*!
  * @class path_plan2
  * @brief ModuleDescription
@@ -66,9 +66,10 @@ class path_plan2
   inline void makeStepsMap(int zeroLocation[2],int occupiedMap[MAPGRIDNUMX][MAPGRIDNUMY], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY]);
   inline void displayStepsMap(int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY]);
   inline int determineNextGoal(int nextGoal[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY], int cleanedMap[MAPGRIDNUMX][MAPGRIDNUMY]);
-  inline int determineNextWayPoint(int nextWayPoint[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY]);
-  inline int realToGrid(double offset[2], int locationGrid[2], double location[2]);
-  /***
+  inline int determineNextWayPoint(int nextWayPoint[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY], int heading);
+  inline int realToGrid(int locationGrid[2], double location[2]);
+  inline void gridToReal(double location[2], int locationGrid[2]);
+/***
    *
    * The initialize action (on CREATED->ALIVE transition)
    * formaer rtc_init_entry() 
@@ -289,6 +290,13 @@ class path_plan2
                                            // 0:not cleaned, 1:cleaned
   double robotLocation[2]; // current robot location (x, y) (m)
   int robotLocationGrid[2];// current robot location on grid (x, y)
+  double robotHeading; // current robot heading (rad)
+  int robotHeadingGrid; // current robot heading on grid. 1, 2, 3, 4
+  //   1 
+  //4 ->  2
+  //   3
+  int nextWayPointGrid[2];
+  double nextWayPoint[2];
 
   // <rtc-template block="private_attribute">
   

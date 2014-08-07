@@ -13,7 +13,7 @@
 #define DEBUG_
 #define DEBUG_MAP  // show map
 #define DEBUG_CMAP // make cleaned map manually
-#define DEBUG_OMAP // make occupied map manually
+//#define DEBUG_OMAP // make occupied map manually
 
 using namespace std;
 
@@ -90,8 +90,10 @@ RTC::ReturnCode_t path_plan2::onInitialize()
   // Bind variables and configuration variable
   bindParameter("velocityCoeff", m_velocityCoeff, "1.0");
   bindParameter("angularVelocityCoeff", m_angularVelocityCoeff, "1.0");
-  
+
   // </rtc-template>
+
+  cout << "initialized " << endl;
   return RTC::RTC_OK;
 }
 
@@ -128,7 +130,14 @@ RTC::ReturnCode_t path_plan2::onActivated(RTC::UniqueId ec_id)
   robotLocation[1] = 0;
   robotLocationGrid[0] = 0;
   robotLocationGrid[1] = 0;
-
+  robotHeading = 0;
+  robotHeadingGrid = 1;
+  nextWayPoint[0] = 0;
+  nextWayPoint[1] = 0;
+  nextWayPointGrid[0] = 0;
+  nextWayPointGrid[1] = 0;
+  
+  cout << "activated " << endl;
   return RTC::RTC_OK;
 }
 
@@ -230,37 +239,54 @@ inline int path_plan2::determineNextGoal(int nextGoal[2], int stepsMap[MAPGRIDNU
   return goalValid;
 }
 
-inline int path_plan2::determineNextWayPoint(int nextWayPoint[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY])
+inline int path_plan2::determineNextWayPoint(int nextWayPoint[2], int stepsMap[MAPGRIDNUMX][MAPGRIDNUMY],int heading)
 {
-  int goalValid = 0;
+  int goalValid = 1;
+  
+  
 
   return goalValid;
 }
 
-inline int path_plan2::realToGrid(double offset[2], int locationGrid[2], double location[2])
+inline int path_plan2::realToGrid(int locationGrid[2], double location[2])
 {
   int gridValid = 1;
-
-  cout << "real:" << location[0] - offset[0] << ", " << location[1] - offset[1] << endl;
 
   locationGrid[0] = (int)((location[0] - XORG)/MAPDIV); // calculate grid number for x
   locationGrid[1] = (int)((location[1] - YORG)/MAPDIV); // calculate grid number for y 
 
-  if(MAPGRIDNUMX <= locationGrid[0] || MAPGRIDNUMY <= locationGrid[1] || 0 > locationGrid[0] || 0 > locationGrid[1]){
+  if((MAPGRIDNUMX <= locationGrid[0]) || (MAPGRIDNUMY <= locationGrid[1]) || (0 > locationGrid[0]) || (0 > locationGrid[1])){
     gridValid = 0; // the calculated grid is out of map
   }
 
   return gridValid;
 }
 
+inline void path_plan2::gridToReal(double location[2], int locationGrid[2])
+{
+  location[0] = ((double)locationGrid[0]) * MAPDIV + XORG;
+  location[1] = ((double)locationGrid[1]) * MAPDIV + YORG;
+}
+
+inline int headingToGrid(double heading)
+{
+  int headingGrid = 0;
+  double  myPI4=0.785375; // pi/4
+
+  if((heading >= 0 && heading <= myPI4) || (heading >= myPI4*7 && heading <= myPI4 * 8 )) headingGrid = 1;
+  if(heading > myPI4 && heading <= myPI4*3) headingGrid = 2;
+  if(heading > myPI4*3 && heading <= myPI4*5) headingGrid = 3;
+  if(heading > myPI4*5 && heading <= myPI4*7) headingGrid = 4;
+  
+  return headingGrid;
+}
 
 RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
 {
-  double gridOrigin[2] = {XORG, YORG};
-  int robotGridValid = 0;
+  int robotGridValid = 0;// check whether obtained robot location is in the map. 0:not-in-map, 1: in-map(valid)
+  int goalValid = 0; // check whether obtained goal is valid or not 0:not-valid, 1:valid
+  int wayPointValid = 0; // check whether obtained way point is valid. 0:not-valid, :valid
   int nextGoal[2] = {0, 0}; // next goal on grid (x, y)
-  double nextWayPoint[2] = {0, 0}; // next way point (x, y)(m)
-  int nextWayPointGrid[2] = {0, 0}; //next way point on grid (x, y)
   int occupiedMap[MAPGRIDNUMX][MAPGRIDNUMY];// occupied map made from URG data. 0:not occupied, 1:occupied
   int stepsMapFromRobot[MAPGRIDNUMX][MAPGRIDNUMY];  //steps map from robot
                                                     //-1:initial value. no route to the grid.
@@ -272,68 +298,71 @@ RTC::ReturnCode_t path_plan2::onExecute(RTC::UniqueId ec_id)
                                                     //>0:steps to reach the grid from goal.
 
   
+
   if(m_robotPoseIn.isNew()){ // if robot location data is available
     m_robotPoseIn.read();    // read the pose data
     robotLocation[0] = m_robotPose.data.position.x; // store current robot x location 
     robotLocation[1] = m_robotPose.data.position.y; // store current robot y location
-    robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation); 
+    robotGridValid = realToGrid(robotLocationGrid, robotLocation); //check calidation of robot position
+    robotHeading = m_robotPose.data.heading; // store current robot heading (rad)
     cleanedMap[robotLocationGrid[0]][robotLocationGrid[1]] = 1; // set cleaned on cleaned map
     cout << "grid:" << robotLocationGrid[0]<< ", " << robotLocationGrid[1] << endl; // display current grids
   }
 
-#ifdef DEBUG_
-  robotLocation[0] = 0.3; // store current robot x location 
-  robotLocation[1] = 1.2; // store current robot y location
-  robotGridValid = realToGrid(gridOrigin, robotLocationGrid, robotLocation);
-  cleanedMap[robotLocationGrid[0]][robotLocationGrid[1]] = 1; // set cleaned on cleaned map
-  cout << "grid:" << robotLocationGrid[0] << ", " << robotLocationGrid[1] << endl; // display current grids
+#ifdef DEBUG_ 
+    robotLocation[0] = 0; // store current robot x location 
+    robotLocation[1] = 0; // store current robot y location
+    robotGridValid = realToGrid(robotLocationGrid, robotLocation);
+    cleanedMap[robotLocationGrid[0]][robotLocationGrid[1]] = 1; // set cleaned on cleaned map
+    //cout << "grid:" << robotLocationGrid[0] << ", " << robotLocationGrid[1] << endl; // display current grids
 #endif
 
 
-#ifdef DEBUG_CMAP
-  cleanedMap[0][0] = 1;
-  cleanedMap[0][1] = 1;
-  cleanedMap[1][0] = 1;
-  cleanedMap[1][1] = 1;
-#endif
-
-
-  // make occupied map
+  if(robotLocationGrid[0] == nextWayPointGrid[0] && robotLocationGrid[1] == nextWayPointGrid[1]){ // if robot entered the next way point grid
 #ifdef DEBUG_OMAP
-  //make occupied map by hand
-  for(int i=0; i<MAPGRIDNUMX ; i++){ //initialize map with 0
-    for(int j=0; j<MAPGRIDNUMY ; j++){
-      occupiedMap[i][j] = 0;
+    //make occupied map by hand
+    for(int i=0; i<MAPGRIDNUMX ; i++){ //initialize map with 0
+      for(int j=0; j<MAPGRIDNUMY ; j++){
+        occupiedMap[i][j] = 0;
+      }
     }
-  }
-  occupiedMap[3][3]=1;
-  occupiedMap[3][4]=1;
-  occupiedMap[5][3]=1;
-  occupiedMap[4][3]=1;
-  occupiedMap[4][4]=1;
-  occupiedMap[4][5]=1;
-  occupiedMap[4][6]=1;
+    occupiedMap[3][3]=1;
+    occupiedMap[3][4]=1;
+    occupiedMap[5][3]=1;
+    occupiedMap[4][3]=1;
+    occupiedMap[4][4]=1;
+    occupiedMap[4][5]=1;
+    occupiedMap[4][6]=1;
 #endif
  
-  makeStepsMap(robotLocationGrid, occupiedMap, stepsMapFromRobot);// make steps map from robot
+    makeStepsMap(robotLocationGrid, occupiedMap, stepsMapFromRobot);// make steps map from robot
 
-  // determine next goal from steps map from robot & cleaned map
-  determineNextGoal(nextGoal, stepsMapFromRobot, cleanedMap); // make next goal from robot
+    // determine next goal from steps map from robot & cleaned map
+    goalValid = determineNextGoal(nextGoal, stepsMapFromRobot, cleanedMap); // make next goal from robot
 
-#ifdef DEBUG_
-  cout << "next goal:" << nextGoal[0] << ", " << nextGoal[1] << endl;
-#endif
+    cout << "next goal:" << nextGoal[0] << ", " << nextGoal[1] << endl;
+    cout << "valid? :" << goalValid << endl; 
 
-  // make steps map from goal
-  makeStepsMap(nextGoal, occupiedMap, stepsMapFromGoal);
+    // make steps map from goal
+    makeStepsMap(nextGoal, occupiedMap, stepsMapFromGoal);
 
-  // determine next way point
-  determineNextWayPoint(nextWayPointGrid, stepsMapFromGoal);
+    robotHeadingGrid = headingToGrid(robotHeading);
+    // determine next way point
+    nextWayPointGrid[0] = nextGoal[0];
+    nextWayPointGrid[1] = nextGoal[1];
+    //wayPointValid = determineNextWayPoint(nextWayPointGrid, stepsMapFromGoal, robotHeadingGrid); 
+    cout << "next way point:" << nextWayPointGrid[0] << ", " << nextWayPointGrid[1] << endl;
+    cout << "valid? :" << wayPointValid << endl;
 
+    gridToReal(nextWayPoint, nextWayPointGrid); // convert grid data to real length
+    cout << "next way point:" << nextWayPoint[0] << ", " << nextWayPoint[1] << endl;
+    
+    m_wayPoint.data.position.x = nextWayPoint[0];
+    m_wayPoint.data.position.y = nextWayPoint[1];
 
-#ifdef DEBUG_MAP
-  displayStepsMap(stepsMapFromRobot);
-#endif
+    m_wayPointOut.write();
+    displayStepsMap(stepsMapFromRobot);
+  }
 
   return RTC::RTC_OK;
 }
